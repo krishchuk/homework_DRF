@@ -1,0 +1,77 @@
+[
+{
+  "model": "materials.course",
+  "pk": 1,
+  "fields": {
+    "title": "Курс",
+    "image": "",
+    "description": "Первый курс"
+  }
+},
+{
+  "model": "materials.course",
+  "pk": 2,
+  "fields": {
+    "title": "Джанга",
+    "image": "",
+    "description": "Джанга сложная, купи курс, сам не разберешься"
+  }
+},
+{
+  "model": "materials.course",
+  "pk": 3,
+  "fields": {
+    "title": "JS",
+    "image": "",
+    "description": "JAVASCRIPT"
+  }
+},
+{
+  "model": "materials.course",
+  "pk": 4,
+  "fields": {
+    "title": "C++",
+    "image": "",
+    "description": "C++++++++"
+  }
+},
+{
+  "model": "materials.course",
+  "pk": 5,
+  "fields": {
+    "title": "Python",
+    "image": "",
+    "description": "Python"
+  }
+},
+{
+  "model": "materials.lesson",
+  "pk": 1,
+  "fields": {
+    "title": "Урок 1",
+    "image": "",
+    "description": "Введение",
+    "course": null
+  }
+},
+{
+  "model": "materials.lesson",
+  "pk": 2,
+  "fields": {
+    "title": "Урок 1",
+    "image": "",
+    "description": "Введение",
+    "course": 1
+  }
+},
+{
+  "model": "materials.lesson",
+  "pk": 3,
+  "fields": {
+    "title": "Урок 2",
+    "image": "",
+    "description": "Работаем",
+    "course": 1
+  }
+}
+]

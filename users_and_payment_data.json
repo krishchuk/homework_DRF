@@ -1,0 +1,162 @@
+[
+{
+  "model": "users.user",
+  "pk": 2,
+  "fields": {
+    "password": "pbkdf2_sha256$720000$2xAFJc7iSoXvUTXBzINPf2$DQAcd1WX664uKsXbaLwmFloIQRVwdhuzMn6zTFiqyT8=",
+    "last_login": "2024-05-09T18:10:55.577Z",
+    "is_superuser": true,
+    "first_name": "Admin",
+    "last_name": "SkyPro",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2024-05-09T18:10:38.006Z",
+    "email": "admin@sky.pro",
+    "phone": null,
+    "city": null,
+    "avatar": "",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 3,
+  "fields": {
+    "password": "123qwe456rty",
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "Иван",
+    "last_name": "Иванов",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2024-05-09T18:13:50Z",
+    "email": "IvanovIvan@test.com",
+    "phone": "89999999999",
+    "city": "Москва",
+    "avatar": "",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 4,
+  "fields": {
+    "password": "123qwe456rty",
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "Петр",
+    "last_name": "Петров",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2024-05-09T18:15:30Z",
+    "email": "PetrovPetr@test.com",
+    "phone": "+78888888888",
+    "city": "Питер",
+    "avatar": "",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 5,
+  "fields": {
+    "password": "123qwe456rty",
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "Федор",
+    "last_name": "Федоров",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2024-05-09T18:16:36Z",
+    "email": "FedorovFedor@test.com",
+    "phone": "+77777777777",
+    "city": "Казань",
+    "avatar": "",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 6,
+  "fields": {
+    "password": "123qwe456rty",
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "Василий",
+    "last_name": "Васильев",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2024-05-09T18:17:42Z",
+    "email": "VasilievVasilii@test.com",
+    "phone": "+76666666666",
+    "city": "Тула",
+    "avatar": "",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.pay",
+  "pk": 1,
+  "fields": {
+    "user": 4,
+    "pay_date": "2024-05-09",
+    "paid_course": 5,
+    "paid_lesson": null,
+    "payment_amount": 100000.0,
+    "payment_method": "банковский перевод"
+  }
+},
+{
+  "model": "users.pay",
+  "pk": 2,
+  "fields": {
+    "user": 3,
+    "pay_date": "2024-05-09",
+    "paid_course": 4,
+    "paid_lesson": null,
+    "payment_amount": 120000.0,
+    "payment_method": "наличные"
+  }
+},
+{
+  "model": "users.pay",
+  "pk": 3,
+  "fields": {
+    "user": 5,
+    "pay_date": "2024-05-09",
+    "paid_course": null,
+    "paid_lesson": 2,
+    "payment_amount": 1000.0,
+    "payment_method": "наличные"
+  }
+},
+{
+  "model": "users.pay",
+  "pk": 4,
+  "fields": {
+    "user": 5,
+    "pay_date": "2024-05-09",
+    "paid_course": null,
+    "paid_lesson": 3,
+    "payment_amount": 5000.0,
+    "payment_method": "наличные"
+  }
+},
+{
+  "model": "users.pay",
+  "pk": 5,
+  "fields": {
+    "user": 6,
+    "pay_date": "2024-05-09",
+    "paid_course": 3,
+    "paid_lesson": null,
+    "payment_amount": 70000.0,
+    "payment_method": "банковский перевод"
+  }
+}
+]
