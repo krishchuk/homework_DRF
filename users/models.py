@@ -25,10 +25,10 @@ class User(AbstractUser):
 
 
 class Pay(models.Model):
-    PAYMENT_METHOD = {
-        '1': 'наличные',
-        '2': 'банковский перевод',
-    }
+    PAYMENT_METHOD = [
+        ('1', 'наличные'),
+        ('2', 'банковский перевод')
+    ]
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='пользователь')
     pay_date = models.DateField(auto_now_add=True, verbose_name='дата платежа')
     paid_course = models.ForeignKey(Course, on_delete=models.SET_NULL, verbose_name='оплаченный курс', **NULLABLE)
