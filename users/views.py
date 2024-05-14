@@ -5,12 +5,21 @@ from rest_framework.permissions import AllowAny
 from rest_framework.viewsets import ModelViewSet
 
 from users.models import User, Pay
-from users.serializers import UserSerializer, PaySerializer
+from users.serializers import UserSerializer, PaySerializer, OtherUserSerializer
 
 
 class UserViewSet(ModelViewSet):
     serializer_class = UserSerializer
     queryset = User.objects.all()
+
+    # def get_serializer_class(self):
+    #     if self.action == 'list':
+    #         return OtherUserSerializer
+    #     elif self.action in ['update', 'retrieve']:
+    #         for obj in self.queryset:
+    #             if obj.id == self.request.user.id:
+    #                 return UserSerializer
+    #         return OtherUserSerializer
 
     def get_permissions(self):
         if self.action == 'create':
