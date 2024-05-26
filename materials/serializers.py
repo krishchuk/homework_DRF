@@ -3,6 +3,7 @@ from rest_framework.fields import SerializerMethodField
 
 from materials.models import Course, Lesson, Subscription
 from materials.validators import TitleValidator, LinkValidator, SubscriptionValidator
+from users.models import User
 
 
 class CourseSerializer(serializers.ModelSerializer):
@@ -26,18 +27,6 @@ class LessonSerializer(serializers.ModelSerializer):
         ]
 
 
-class CourseCountSerializer(serializers.ModelSerializer):
-    lessons_count = SerializerMethodField()
-    lessons = LessonSerializer(source='lesson_set', many=True)
-
-    def get_lessons_count(self, obj):
-        return Lesson.objects.filter(course=obj).count()
-
-    class Meta:
-        model = Course
-        fields = ('id', 'title', 'description', 'lessons_count', 'lessons',)
-
-
 class SubscriptionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Subscription
@@ -45,3 +34,22 @@ class SubscriptionSerializer(serializers.ModelSerializer):
         validators = [
             SubscriptionValidator(),
         ]
+
+
+class CourseCountSerializer(serializers.ModelSerializer):
+    lessons_count = SerializerMethodField()
+    lessons = LessonSerializer(source='lesson_set', many=True)
+    # subscriptions = SubscriptionSerializer(source='subscription_set', many=True)
+    subscription = SerializerMethodField()
+
+    def get_lessons_count(self, obj):
+        return Lesson.objects.filter(course=obj).count()
+
+    def get_subscription(self, obj):
+        if Subscription.objects.filter(course=obj):
+            return True
+        return False
+
+    class Meta:
+        model = Course
+        fields = ('id', 'title', 'description', 'lessons_count', 'lessons', 'subscription', )
