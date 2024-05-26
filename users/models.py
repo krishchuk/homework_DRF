@@ -34,7 +34,9 @@ class Pay(models.Model):
     paid_course = models.ForeignKey(Course, on_delete=models.SET_NULL, verbose_name='оплаченный курс', **NULLABLE)
     paid_lesson = models.ForeignKey(Lesson, on_delete=models.SET_NULL, verbose_name='оплаченный урок', **NULLABLE)
     payment_amount = models.FloatField(verbose_name='сумма платежа')
-    payment_method = models.CharField(choices=PAYMENT_METHOD, verbose_name='способ оплаты')
+    payment_method = models.CharField(choices=PAYMENT_METHOD, default=2, verbose_name='способ оплаты')
+    session_id = models.CharField(max_length=255, verbose_name='ID сессии', **NULLABLE)
+    link = models.URLField(max_length=400, verbose_name='Ссылка на оплату', **NULLABLE)
 
     def __str__(self):
         if self.paid_course:
