@@ -49,17 +49,6 @@ class CourseCountSerializer(serializers.ModelSerializer):
         return Lesson.objects.filter(course=obj).count()
 
     def get_subscription(self, obj):
-        print(self)
-        print("----------------------------------------------------------------------------------")
-        print(obj)
-        print(type(obj))
-        print("----------------------------------------------------------------------------------")
-        # request = self.context.get('request', None)
-        # if request:
-        #     return request.user
-
-
-        # if Subscription.objects.filter(course=obj, user=User.objects.get(pk=8).id):
         if Subscription.objects.filter(course=obj, user=self.context.get('request', None).user.id):
             return True
         return False
