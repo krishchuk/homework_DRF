@@ -1,5 +1,8 @@
+import requests
+from django.conf import settings
 from rest_framework import serializers
 from rest_framework.fields import SerializerMethodField
+from rest_framework.permissions import IsAuthenticated
 
 from materials.models import Course, Lesson, Subscription
 from materials.validators import TitleValidator, LinkValidator, SubscriptionValidator
@@ -46,7 +49,18 @@ class CourseCountSerializer(serializers.ModelSerializer):
         return Lesson.objects.filter(course=obj).count()
 
     def get_subscription(self, obj):
-        if Subscription.objects.filter(course=obj):
+        print(self)
+        print("----------------------------------------------------------------------------------")
+        print(obj)
+        print(type(obj))
+        print("----------------------------------------------------------------------------------")
+        # request = self.context.get('request', None)
+        # if request:
+        #     return request.user
+
+
+        # if Subscription.objects.filter(course=obj, user=User.objects.get(pk=8).id):
+        if Subscription.objects.filter(course=obj, user=self.context.get('request', None).user.id):
             return True
         return False
 
