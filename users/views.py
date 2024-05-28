@@ -1,7 +1,7 @@
 from rest_framework.filters import OrderingFilter
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.generics import ListAPIView, CreateAPIView
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.viewsets import ModelViewSet
 
 from users.models import User, Pay
@@ -44,14 +44,16 @@ class PayListAPIView(ListAPIView):
 class PayCreateAPIView(CreateAPIView):
     serializer_class = PaySerializer
     queryset = Pay.objects.all()
+    permission_classes = [IsAuthenticated]
 
     def perform_create(self, serializer):
-        payment = serializer.save()
-        payment.user = self.request.user
-        if self.request.paid_course:
-            product = create_stripe_product(self.request.paid_course)
+        payment = serializer.save(user=self.request.user)
+
+        if payment.paid_course:
+            product = create_stripe_product(payment.paid_course)
         else:
-            product = create_stripe_product(self.request.paid_lesson)
+            product = create_stripe_product(payment.paid_lesson)
+
         stripe_price = create_stripe_price(payment.payment_amount, product)
         session_id, payment_link = create_stripe_session(stripe_price)
         payment.session_id = session_id

@@ -1,9 +1,15 @@
 from rest_framework import serializers
+from rest_framework.fields import SerializerMethodField
 
 from users.models import User, Pay
 
 
 class PaySerializer(serializers.ModelSerializer):
+    user = SerializerMethodField()
+
+    def get_user(self, obj):
+        return int(self.context.get('request', None).user.id)
+
     class Meta:
         model = Pay
         fields = '__all__'
