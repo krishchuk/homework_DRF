@@ -8,6 +8,7 @@ from rest_framework.status import HTTP_204_NO_CONTENT, HTTP_201_CREATED
 from materials.models import Course, Lesson, Subscription
 from materials.paginators import LessonPagination, LearningPagination
 from materials.serializers import CourseSerializer, LessonSerializer, CourseCountSerializer, SubscriptionSerializer
+from materials.tasks import send_mail_update
 from users.permissions import IsModerator, IsOwner
 
 
@@ -31,6 +32,12 @@ class CourseViewSet(ModelViewSet):
     def perform_create(self, serializer):
         course = serializer.save()
         course.owner = self.request.user
+        subscriptions = Subscription.objects.all()
+        recipient_list = []
+        for subscription in subscriptions:
+            if course == subscription.course:
+                recipient_list.append(subscription.user.email)
+        send_mail_update(course=course.title, recipient_list=recipient_list)
         course.save()
 
 
