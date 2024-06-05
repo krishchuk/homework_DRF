@@ -32,13 +32,13 @@ class CourseViewSet(ModelViewSet):
     def perform_create(self, serializer):
         course = serializer.save()
         course.owner = self.request.user
-        subscriptions = Subscription.objects.all()
-        recipient_list = []
-        for subscription in subscriptions:
-            if course == subscription.course:
-                recipient_list.append(subscription.user.email)
-        send_mail_update(course=course.title, recipient_list=recipient_list)
         course.save()
+
+    def perform_update(self, serializer):
+        course = serializer.save()
+        print('updating...')
+        send_mail_update.delay(course_id=course.pk)
+        print('updated')
 
 
 class LessonCreateAPIView(CreateAPIView):
