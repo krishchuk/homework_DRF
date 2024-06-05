@@ -1,12 +1,8 @@
-import requests
-from django.conf import settings
 from rest_framework import serializers
 from rest_framework.fields import SerializerMethodField
-from rest_framework.permissions import IsAuthenticated
 
 from materials.models import Course, Lesson, Subscription
 from materials.validators import TitleValidator, LinkValidator, SubscriptionValidator
-from users.models import User
 
 
 class CourseSerializer(serializers.ModelSerializer):

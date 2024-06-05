@@ -5,22 +5,13 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.viewsets import ModelViewSet
 
 from users.models import User, Pay
-from users.serializers import UserSerializer, PaySerializer, OtherUserSerializer
+from users.serializers import UserSerializer, PaySerializer
 from users.services import create_stripe_price, create_stripe_session, create_stripe_product
 
 
 class UserViewSet(ModelViewSet):
     serializer_class = UserSerializer
     queryset = User.objects.all()
-
-    # def get_serializer_class(self):
-    #     if self.action == 'list':
-    #         return OtherUserSerializer
-    #     elif self.action in ['update', 'retrieve']:
-    #         for obj in self.queryset:
-    #             if obj.id == self.request.user.id:
-    #                 return UserSerializer
-    #         return OtherUserSerializer
 
     def get_permissions(self):
         if self.action == 'create':
